@@ -1,0 +1,50 @@
+CREATE table produtos (
+  ID SERIAL PRIMARY KEY,
+  nome_produto VARCHAR(50) NOT NULL,
+  categoria_produto VARCHAR(50) NOT NULL,
+  preco_custo REAL NOT NULL,
+  preco_venda REAL not null
+ )
+ 
+ create table clientes (
+   ID SERIAL PRIMARY key,
+   nome_cliente VARCHAR(50) NOT NULL,
+   contato_cliente INT,
+   cidade_cliente VARCHAR(50)
+  )
+  
+  CREATE TABLE pedido (
+    id SERIAL PRIMARY key,
+    quantidade INT NOT NULL,
+    prazo_entrega DATE NOT NULL,
+    forma_pagamento VARCHAR(25) NOT NULL,
+    id_cliente INT,
+    id_produto INT,
+    FOREIGN key (id_cliente) REFERENCES clientes(ID),
+    FOREIGN key (id_produto) REFERENCES produtos(ID)
+  )
+  
+  INSERT into clientes(nome_cliente, contato_cliente, cidade_cliente) 
+  values ('Neuda Pereira', 87564321, 'Acopiara-CE'),
+  ('Cecilia Lopes', 96873219, 'Pedra Branca-CE'),
+  ('João Moreira', 956329317, 'Itapipoca-CE')
+  
+  INSERT into produtos(nome_produto, categoria_produto, preco_custo, preco_venda)
+  VALUES ('Caixa 15x15', 'Caixa Crua', 5.14, 10.00),
+  ('Caixa 11x17', 'Caixa Crua', 8.14, 12.00),
+  ('Caixa 15x15 decorada', 'Batizado', 15.00, 35.00),
+  ('Chaveiro', 'Batizado', 3.50, 5.00),
+  ('Chaveiro', 'Aniversario', 3.00, 4.50)
+  
+  insert into pedido(quantidade, prazo_entrega, forma_pagamento, id_cliente, id_produto)
+  values (30, '2024-04-10', 'Cartão', 1, 4),
+  (4, '2024-04-10', 'Cartão', 1, 3),
+  (30, '2024-04-25', 'PIX', 2, 5),
+  (1, '2024-03-10', 'Dinheiro', 3, 1),
+  (1, '2024-03-10', 'Cartão', 3, 2)
+  
+  
+  //Seleciona os clientes que fizeram pedidos, qual aa quantidade dos produtos e o nome dos itens doo pedido 
+  select nome_cliente, nome_produto, quantidade, categoria_produto, forma_pagamento from pedido 
+  inner join clientes on clientes.id = pedido.id_cliente
+  INNER join produtos on pedido.id_produto = produtos.id;
