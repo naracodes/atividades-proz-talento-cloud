@@ -1,0 +1,29 @@
+body {
+    color: blue;
+    text-align: justify;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 4px solid black;
+}
+
+p {
+    width: 500px;
+}
+
+img {
+    border-radius: 10px;
+}
