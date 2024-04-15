@@ -1,0 +1,6 @@
+create table ALUNO (
+	Id SERIAL PRIMARY KEY,
+  	nome VARCHAR,
+  	email VARCHAR,
+  	endereco VARCHAR
+);
