@@ -1,0 +1,21 @@
+CREATE TABLE Produtos (
+    ID SERIAL PRIMARY KEY,
+    Nome VARCHAR(100),
+    Preco DECIMAL(10, 2)
+);
+
+CREATE TABLE Log_Produtos (
+    ID SERIAL PRIMARY KEY,
+    Acao VARCHAR(100),
+    DataHora TIMESTAMP
+);
+
+-- Criar o trigger para inserção de novos produtos
+DELIMITER //
+CREATE TRIGGER after_insert_produto
+AFTER INSERT ON Produtos
+FOR EACH ROW
+BEGIN
+    INSERT INTO Log_Produtos (Acao, DataHora) VALUES ('Novo produto inserido: ' + NEW.Nome, NOW());
+END //
+DELIMITER ;
