@@ -1,0 +1,11 @@
+CREATE PROCEDURE GerarRelatorioQuantidadeProdutosCompradosPorDia
+AS
+BEGIN
+    SELECT 
+        DataCompra,
+        COUNT(*) AS QuantidadeProdutosComprados
+    FROM 
+        TabelaDeCompras
+    GROUP BY 
+        DataCompra;
+END;
