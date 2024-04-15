@@ -1,0 +1,10 @@
+CREATE FUNCTION contarClientesPorDia(data_consulta DATE) RETURNS INT
+BEGIN
+    DECLARE total_clientes INT;
+    
+    SELECT COUNT(*) INTO total_clientes 
+    FROM Clientes 
+    WHERE DATE(data_cadastro) = data_consulta;
+    
+    RETURN total_clientes;
+END;
